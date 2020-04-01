@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for info in information %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ info.gender }}</a>
+            <small class="text-muted">{{ info.status }}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ info.name }}</a></h2>
+        <h6><a class="mr-2">Species: {{ info.species }}</a></h6>
+        <h6><a class="mr-2">Type: {{ info.type }}</a></h6>
+        <h6><a class="mr-2">Origin: {{ info.origin["name"] }}</a></h6>
+        <img src="{{ info.image }}">
+
+        <h4><a class="mr-2">Character Episodes</a></h4>
+        {% for episode in info.episode %}
+        <h6><a class="mr-2" href="/episodes/{{ episode['id'] }}">{{ episode['name'] }}</a></h6>
+        {% endfor %}
+
+        <h4><a class="mr-2">Character Locations</a></h4>
+        <h6><a class="mr-2" href="/locations/{{ info['location']['id'] }}">{{ info.location["name"] }}</a></h6>
+
+    </div>
+</article>
+{% endfor %}
+{% endblock content %}

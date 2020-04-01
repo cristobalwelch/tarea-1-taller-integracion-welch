@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for category in information.keys() %}
+<article class="media content-section">
+    <div class="media-body">
+        {% if category == "episode" %}
+        <h2><a class="mr-2">Episodes</a></h2>
+        {% for info in information["episode"]%}
+
+        <h5><a class="article-title" href="/episodes/{{ info.id }}">{{ info.name }}</a></h5>
+
+        {% endfor %}
+
+        {% elif category == "character" %}
+        <h2><a class="mr-2">Characters</a></h2>
+        {% for info in information[category]%}
+
+        <h5><a class="article-title" href="/characters/{{ info.id }}">{{ info.name }}</a></h5>
+        
+        {% endfor %}
+
+        {% elif category == "location" %}
+        <h2><a class="mr-2">Locations</a></h2>
+        {% for info in information[category]%}
+        
+        <h5><a class="article-title" href="/locations/{{ info.id }}">{{ info.name }}</a></h5>
+        {% endfor %}
+
+        {% else %}
+
+        {% endif %}
+
+    </div>
+</article>
+{% endfor %}
+{% endblock content %}
